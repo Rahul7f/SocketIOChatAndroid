@@ -1,6 +1,7 @@
 package com.rsin.socketiochat;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.Random;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder>{
 
@@ -43,10 +45,16 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return mMessages.get(position).getType();
+    }
+
+    @Override
     public void onBindViewHolder(@NonNull MessageAdapter.ViewHolder holder, int position) {
         Message message = mMessages.get(position);
         holder.setMessage(message.getMessage());
         holder.setUsername(message.getUsername());
+//        holder.getUsernameColor(message.getUsername());
 
     }
 
@@ -68,7 +76,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         public void setUsername(String username) {
             if (null == mUsernameView) return;
             mUsernameView.setText(username);
-//            mUsernameView.setTextColor(getUsernameColor(username));
+            mUsernameView.setTextColor(getUsernameColor(username));
         }
 
         public void setMessage(String message) {
@@ -76,13 +84,19 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             mMessageView.setText(message);
         }
 
-//        private int getUsernameColor(String username) {
-//            int hash = 7;
-//            for (int i = 0, len = username.length(); i < len; i++) {
-//                hash = username.codePointAt(i) + (hash << 5) - hash;
-//            }
-//            int index = Math.abs(hash % mUsernameColors.length);
-//            return mUsernameColors[index];
-//        }
+        private int getUsernameColor(String username) {
+            if (username.isEmpty())
+            {
+                return 0;
+            }
+            int hash = 7;
+            for (int i = 0, len = username.length(); i < len; i++) {
+                hash = username.codePointAt(i) + (hash << 5) - hash;
+            }
+            int index = Math.abs(hash % mUsernameColors.length);
+            return mUsernameColors[index];
+        }
     }
+
+
 }

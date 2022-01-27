@@ -2,10 +2,12 @@ package com.rsin.socketiochat;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -17,8 +19,13 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.card.MaterialCardView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,8 +38,9 @@ import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
 public class MainActivity extends AppCompatActivity {
-    Button send;
+    RelativeLayout send;
     private Socket socket;
+    TextView status;
     private List<Message> messageList = new ArrayList<Message>();
 
     private RecyclerView recyclerView;
@@ -55,15 +63,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         messageInputBox = findViewById(R.id.et);
         recyclerView = findViewById(R.id.recyclerview);
+        status = findViewById(R.id.status);
         adapter = new MessageAdapter(getApplicationContext(), messageList);
         recyclerView.setAdapter(adapter);
-        send = findViewById(R.id.send);
-        username = getIntent().getStringExtra("USERNAME");
+        send = findViewById(R.id.send_ret);
+        username = getIntent().getStringExtra("USERNAME")+":";
 
 
         try {
 //            socket = IO.socket("http://192.168.43.93:3000/");
             socket = IO.socket("https://obscure-badlands-61875.herokuapp.com/");
+            status.setBackgroundColor(Color.parseColor("#e21400"));
+            status.setText("Connecting.....");
+            status.setTextColor(Color.parseColor("#FFFFFFFF"));
+
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Server Down...\nwe are trying to connect...", Toast.LENGTH_SHORT).show();
         }
@@ -158,8 +171,10 @@ public class MainActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    status.setBackgroundColor(Color.parseColor("#58dc00"));
+                    status.setText("You are Connected.....");
+                    status.setTextColor(Color.parseColor("#FFFFFFFF"));
                     socket.emit("add user", username);
-                    Toast.makeText(getApplicationContext(), R.string.connect, Toast.LENGTH_LONG).show();
                 }
             });
         }
@@ -171,6 +186,9 @@ public class MainActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    status.setBackgroundColor(Color.parseColor("#e21400"));
+                    status.setText("Disconnected");
+                    status.setTextColor(Color.parseColor("#FFFFFFFF"));
                     Log.i(TAG, "disconnected");
                     isConnected = false;
                     Toast.makeText(getApplicationContext(), R.string.disconnect, Toast.LENGTH_LONG).show();
@@ -185,6 +203,9 @@ public class MainActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    status.setBackgroundColor(Color.parseColor("#e21400"));
+                    status.setText("Connecting.....");
+                    status.setTextColor(Color.parseColor("#FFFFFFFF"));
                     Log.e(TAG, "Error connecting");
                     Toast.makeText(getApplicationContext(),
                             R.string.error_connect, Toast.LENGTH_LONG).show();

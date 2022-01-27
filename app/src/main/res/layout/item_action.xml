@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:gravity="center_horizontal"
+    android:layout_marginTop="16dp"
     android:layout_height="wrap_content">
     <TextView
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="USER"
+        android:text="USER:"
         style="?android:textAppearanceMedium"
         android:textColor="@color/black"
         android:layout_marginLeft="16dp"
         android:textStyle="bold"/>
     <TextView
         android:id="@+id/action"
-        android:text="Message "
+        android:text="Typing... "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="16dp"

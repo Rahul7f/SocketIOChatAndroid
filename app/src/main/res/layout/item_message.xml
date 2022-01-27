@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:layout_marginLeft="10dp"
+    android:background="@drawable/shape_bg_incoming_bubble"
     android:layout_marginTop="16dp">
     <TextView
         android:id="@+id/username"
         style="?android:textAppearanceMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
         android:singleLine="false"
+        android:paddingLeft="16dp"
         android:text="USER"
         android:textColor="?android:textColorPrimary"
         android:textStyle="bold" />
