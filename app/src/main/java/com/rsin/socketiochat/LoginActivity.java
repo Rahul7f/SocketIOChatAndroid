@@ -21,7 +21,7 @@ import io.socket.emitter.Emitter;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText editText;
-    Button signInButton;
+    Button signInButton, stranger_btn;
 
 
     @Override
@@ -30,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         editText =  findViewById(R.id.username_input);
         signInButton =  findViewById(R.id.sign_in_button);
+        stranger_btn =  findViewById(R.id.stranger_option);
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,10 +46,32 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
+
+        stranger_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (editText.getText().toString().isEmpty())
+                {
+                    Toast.makeText(getApplicationContext(), "enter your name", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    strangerLogin(editText.getText().toString());
+                }
+
+            }
+        });
     }
 
     private void attemptLogin( String username) {
         Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+        intent.putExtra("USERNAME",username);
+        startActivity(intent);
+    }
+
+    private void strangerLogin( String username) {
+        Intent intent = new Intent(LoginActivity.this,StrangerChat.class);
         intent.putExtra("USERNAME",username);
         startActivity(intent);
     }

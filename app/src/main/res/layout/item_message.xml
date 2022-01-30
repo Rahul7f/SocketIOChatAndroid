@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:padding="10dp"
     android:orientation="vertical"
-    android:layout_marginLeft="10dp"
+    android:layout_marginHorizontal="10dp"
     android:background="@drawable/shape_bg_incoming_bubble"
     android:layout_marginTop="16dp">
     <TextView
@@ -24,7 +24,6 @@
         android:layout_height="wrap_content"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:singleLine="true"
         android:text="Message"
         android:textColor="?android:textColorPrimary" />
 </LinearLayout>

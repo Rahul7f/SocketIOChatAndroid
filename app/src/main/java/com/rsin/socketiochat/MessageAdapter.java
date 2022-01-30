@@ -55,7 +55,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         holder.setMessage(message.getMessage());
         holder.setUsername(message.getUsername());
 //        holder.getUsernameColor(message.getUsername());
-
     }
 
     @Override

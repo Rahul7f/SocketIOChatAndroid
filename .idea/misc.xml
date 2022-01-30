@@ -7,7 +7,8 @@
         <entry key="app/src/main/res/drawable/ic_attach_file_black_24dp.xml" value="0.21145833333333333" />
         <entry key="app/src/main/res/drawable/shape_bg_incoming_bubble.xml" value="0.21145833333333333" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_stranger_chat.xml" value="0.1953125" />
         <entry key="app/src/main/res/layout/item_action.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_log.xml" value="0.5" />
         <entry key="app/src/main/res/layout/item_message.xml" value="0.33" />

@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private Handler mTypingHandler = new Handler();
     private String username;
     private RecyclerView.Adapter adapter;
+    TextView total_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,15 +65,18 @@ public class MainActivity extends AppCompatActivity {
         messageInputBox = findViewById(R.id.et);
         recyclerView = findViewById(R.id.recyclerview);
         status = findViewById(R.id.status);
+        total_user = findViewById(R.id.active_user);
         adapter = new MessageAdapter(getApplicationContext(), messageList);
         recyclerView.setAdapter(adapter);
         send = findViewById(R.id.send_ret);
         username = getIntent().getStringExtra("USERNAME")+":";
 
 
+
         try {
 //            socket = IO.socket("http://192.168.43.93:3000/");
             socket = IO.socket("https://obscure-badlands-61875.herokuapp.com/");
+
             status.setBackgroundColor(Color.parseColor("#e21400"));
             status.setText("Connecting.....");
             status.setTextColor(Color.parseColor("#FFFFFFFF"));
@@ -171,10 +175,12 @@ public class MainActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    Toast.makeText(getApplicationContext(), "connected", Toast.LENGTH_SHORT).show();
                     status.setBackgroundColor(Color.parseColor("#58dc00"));
-                    status.setText("You are Connected.....");
+                    status.setText("Connected");
                     status.setTextColor(Color.parseColor("#FFFFFFFF"));
                     socket.emit("add user", username);
+
                 }
             });
         }
@@ -350,6 +356,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void addParticipantsLog(int numUsers) {
         addLog(getResources().getQuantityString(R.plurals.message_participants, numUsers, numUsers));
+        total_user.setText("User Currently Active : "+numUsers);
     }
 
     private void addMessage(String username, String message) {
