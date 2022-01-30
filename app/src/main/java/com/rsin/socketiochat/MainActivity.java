@@ -78,8 +78,9 @@ public class MainActivity extends AppCompatActivity {
             socket = IO.socket("https://obscure-badlands-61875.herokuapp.com/");
 
             status.setBackgroundColor(Color.parseColor("#e21400"));
-            status.setText("Connecting.....");
             status.setTextColor(Color.parseColor("#FFFFFFFF"));
+            status.setText("Connecting.....");
+
 
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Server Down...\nwe are trying to connect...", Toast.LENGTH_SHORT).show();
@@ -177,8 +178,9 @@ public class MainActivity extends AppCompatActivity {
                 public void run() {
                     Toast.makeText(getApplicationContext(), "connected", Toast.LENGTH_SHORT).show();
                     status.setBackgroundColor(Color.parseColor("#58dc00"));
-                    status.setText("Connected");
                     status.setTextColor(Color.parseColor("#FFFFFFFF"));
+                    status.setText("Connected");
+
                     socket.emit("add user", username);
 
                 }
