@@ -7,6 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".StrangerChat">
 
+    <include
+        android:id="@+id/include"
+        layout="@layout/app_bar" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="0dp"
@@ -17,7 +21,7 @@
         app:layout_constraintBottom_toTopOf="@+id/item_input_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/status" />
+        app:layout_constraintTop_toBottomOf="@+id/include" />
 
 
     <RelativeLayout
@@ -179,16 +183,5 @@
         </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
-
-    <TextView
-        android:id="@+id/status"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="status.."
-        android:gravity="center"
-        android:padding="2dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

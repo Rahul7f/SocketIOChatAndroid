@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -33,7 +34,7 @@ public class StrangerChat extends AppCompatActivity {
     private Socket socket;
     private String username;
     String partner_id,partner_username,my_id;
-    TextView status;
+    TextView status,typing_status,end_chat;
     String TAG = "STRANGER";
     RecyclerView recyclerView;
     StrangerAdapter strangerAdapter;
@@ -49,7 +50,9 @@ public class StrangerChat extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stranger_chat);
-        status = findViewById(R.id.status);
+        status = findViewById(R.id.patner_status);
+        typing_status = findViewById(R.id.typing_status);
+        end_chat = findViewById(R.id.chat_end_button);
         messageInputBox = findViewById(R.id.et);
         recyclerView = findViewById(R.id.recyclerview);
         send = findViewById(R.id.send_ret);
@@ -65,8 +68,8 @@ public class StrangerChat extends AppCompatActivity {
 
         // connection to server
         try {
-            socket = IO.socket("http://192.168.43.93:3003/");
-//            socket = IO.socket("https://obscure-badlands-61875.herokuapp.com/");
+//            socket = IO.socket("http://192.168.43.93:3003/");
+            socket = IO.socket("https://stranger-chat-server.herokuapp.com/");
 
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Server Down...\nwe are trying to connect...", Toast.LENGTH_SHORT).show();
@@ -76,8 +79,7 @@ public class StrangerChat extends AppCompatActivity {
         socket.on(Socket.EVENT_CONNECT, onConnect);
         socket.on("init", init);
         socket.on("disconnect", onDisconnect);
-        socket.off("typing", onTyping);
-        socket.off("stop typing", onStopTyping);
+        socket.on("typingIND", onTyping);
         socket.on(Socket.EVENT_CONNECT_ERROR, onConnectError);
         socket.on("connect_timeout", onConnectError);
         socket.on("partner", partner);
@@ -103,6 +105,13 @@ public class StrangerChat extends AppCompatActivity {
             }
         });
 
+        end_chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         messageInputBox.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -118,11 +127,20 @@ public class StrangerChat extends AppCompatActivity {
 
                     try {
                         JSONObject data = new JSONObject();
-                        data.put("target",partner_id);
-                        data.put("sourceUsername",username);
-                        socket.emit("typing",data);
+                        if (!partner_id.isEmpty() && !partner_username.isEmpty())
+                        {
+                            data.put("target",partner_id);
+                            data.put("sourceUsername",username);
+                            socket.emit("typing",data);
+                            Log.d("error",username+" "+partner_id);
+                            Log.d("error","typing requested");
+                        }else {
+                            Log.d("error","variable are empty");
+                        }
+
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        Log.d("error",e.getMessage());
                     }
 
 
@@ -164,8 +182,6 @@ public class StrangerChat extends AppCompatActivity {
         socket.disconnect();
         socket.on(Socket.EVENT_CONNECT, onConnect);
         socket.on("disconnect", onDisconnect);
-        socket.off("typing", onTyping);
-        socket.off("stop typing", onStopTyping);
         socket.on(Socket.EVENT_CONNECT_ERROR, onConnectError);
         socket.on("connect_timeout", onConnectError);
     }
@@ -178,8 +194,7 @@ public class StrangerChat extends AppCompatActivity {
                 public void run() {
                     socket.emit("add user", username);
                     status.setText("finding match...");
-                    status.setBackgroundColor(Color.parseColor("#e21400"));
-                    status.setTextColor(Color.parseColor("#FFFFFFFF"));
+                    status.setTextColor(Color.parseColor("#e21400"));
                 }
             });
             
@@ -261,29 +276,14 @@ public class StrangerChat extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(getApplicationContext(), "user disconnected", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getApplicationContext(), "user disconnected", Toast.LENGTH_LONG).show();
+                    //TODO  reload activity
 
                 }
             });
         }
     };
 
-    private Emitter.Listener onStopTyping = new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    boolean b = (boolean) args[0];
-                    if (!b)
-                    {
-                        Toast.makeText(getApplicationContext(), "user typing", Toast.LENGTH_LONG).show();
-                    }
-
-                }
-            });
-        }
-    };
 
     private Emitter.Listener onTyping = new Emitter.Listener() {
         @Override
@@ -294,7 +294,10 @@ public class StrangerChat extends AppCompatActivity {
                     boolean b = (boolean) args[0];
                     if (b)
                     {
-                        Toast.makeText(getApplicationContext(), "user typing", Toast.LENGTH_LONG).show();
+                        typing_status.setText("Typing...");
+                    }
+                    else {
+                        typing_status.setText("");
                     }
                 }
             });
@@ -308,8 +311,7 @@ public class StrangerChat extends AppCompatActivity {
                 @Override
                 public void run() {
                     status.setText("connection error");
-                    status.setBackgroundColor(Color.parseColor("#e21400"));
-                    status.setTextColor(Color.parseColor("#FFFFFFFF"));
+                    status.setTextColor(Color.parseColor("#e21400"));
                 }
             });
         }
@@ -328,9 +330,8 @@ public class StrangerChat extends AppCompatActivity {
                         try {
                             partner_id = data.getString("partner_id");
                             partner_username = data.getString("partner_username");
-                            status.setText("You are connected with: "+partner_username);
-                            status.setBackgroundColor(Color.parseColor("#3b88eb"));
-                            status.setTextColor(Color.parseColor("#FFFFFFFF"));
+                            status.setText(partner_username.trim()+" connected");
+                            status.setTextColor(Color.parseColor("#3b88eb"));
                         } catch (JSONException e) {
                             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
@@ -419,7 +420,12 @@ public class StrangerChat extends AppCompatActivity {
     private void scrollToBottom() {
         recyclerView.scrollToPosition(strangerAdapter.getItemCount() - 1);
     }
-
+    
+    void refreshActivity()
+    {
+        finish();
+        startActivity(getIntent());
+    }
 
 }
 
