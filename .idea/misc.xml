@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/button_one_corner_bg.xml" value="0.21145833333333333" />
         <entry key="app/src/main/res/drawable/event_bg.xml" value="0.21145833333333333" />
         <entry key="app/src/main/res/drawable/ic_attach_file_black_24dp.xml" value="0.21145833333333333" />
         <entry key="app/src/main/res/drawable/ic_send_black_24dp.xml" value="0.21145833333333333" />
@@ -11,6 +12,7 @@
         <entry key="app/src/main/res/drawable/shape_bg_outgoing_bubble.xml" value="0.21145833333333333" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_stater.xml" value="0.175" />
         <entry key="app/src/main/res/layout/activity_stranger_chat.xml" value="0.33" />
         <entry key="app/src/main/res/layout/app_bar.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_action.xml" value="0.22" />

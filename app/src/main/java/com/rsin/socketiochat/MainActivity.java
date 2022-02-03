@@ -38,7 +38,7 @@ import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
 public class MainActivity extends AppCompatActivity {
-    RelativeLayout send;
+    ImageView send;
     private Socket socket;
     TextView status;
     private List<Message> messageList = new ArrayList<Message>();
@@ -62,13 +62,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        messageInputBox = findViewById(R.id.et);
+        messageInputBox = findViewById(R.id.message_et);
         recyclerView = findViewById(R.id.recyclerview);
         status = findViewById(R.id.status);
         total_user = findViewById(R.id.active_user);
         adapter = new MessageAdapter(getApplicationContext(), messageList);
         recyclerView.setAdapter(adapter);
-        send = findViewById(R.id.send_ret);
+        send = findViewById(R.id.sent_button_chatroom);
         username = getIntent().getStringExtra("USERNAME")+":";
 
 
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         messageInputBox.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int id, KeyEvent event) {
-                if (id == R.id.send || id == EditorInfo.IME_NULL) {
+                if (id == R.id.sent_button_chatroom || id == EditorInfo.IME_NULL) {
                     attemptSend();
                     return true;
                 }
