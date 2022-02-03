@@ -4,16 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp"
-    android:layout_marginTop="16dp">
+    android:layout_marginTop="16dp"
+    android:visibility="visible">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/incoming_msg_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_bg_incoming_bubble"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
         android:orientation="vertical"
         android:padding="10dp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,60 +23,99 @@
 
         <TextView
             android:id="@+id/partner_username"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:gravity="start"
-            android:paddingLeft="20dp"
-            android:paddingRight="16dp"
             android:singleLine="false"
-            android:text="USER"
-            android:textColor="?android:textColorPrimary"
-            android:textStyle="bold" />
+            android:text="Victor - 00:00"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toTopOf="@+id/view" />
 
         <TextView
             android:id="@+id/partner_msg"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="27dp"
             android:gravity="start"
-            android:paddingLeft="20dp"
-            android:paddingRight="16dp"
             android:text="Message"
-            android:textColor="?android:textColorPrimary" />
-    </LinearLayout>
+            android:textSize="16dp"
+            android:textColor="?android:textColorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/partner_username"
+            app:layout_constraintTop_toBottomOf="@+id/partner_username" />
 
-    <LinearLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/view"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:backgroundTint="#3886EF"
+            app:cardCornerRadius="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/outgoing_msg_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_bg_outgoing_bubble"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="16dp"
         android:orientation="vertical"
         android:padding="10dp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:backgroundTint="#DD6D5A"
+            app:cardCornerRadius="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/my_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:gravity="end"
-            android:paddingLeft="16dp"
-            android:paddingRight="20dp"
             android:singleLine="false"
-            android:text="USER"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:text="Anonymous - 00:00"
+            app:layout_constraintEnd_toStartOf="@+id/cardView"
+            app:layout_constraintTop_toTopOf="@+id/cardView" />
 
-        <TextView
-            android:id="@+id/my_message"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/rr_layout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="start"
-            android:paddingLeft="16dp"
-            android:paddingRight="20dp"
-            android:text="message"
-            android:textColor="@color/white" />
-    </LinearLayout>
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="5dp"
+            android:gravity="end"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/my_username"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/my_username" >
+
+            <TextView
+                android:id="@+id/my_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="27dp"
+                android:layout_marginTop="5dp"
+                android:text="message"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@+id/my_username"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/my_username" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

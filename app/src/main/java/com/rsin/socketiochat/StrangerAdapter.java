@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -48,7 +49,7 @@ public class StrangerAdapter extends RecyclerView.Adapter<StrangerAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout incoming, outgoing;
+        ConstraintLayout incoming, outgoing;
         TextView partner_msg,partner_name,my_name,my_message;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

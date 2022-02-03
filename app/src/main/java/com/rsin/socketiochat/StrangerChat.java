@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,7 +41,7 @@ public class StrangerChat extends AppCompatActivity {
     StrangerAdapter strangerAdapter;
     private EditText messageInputBox;
     private List<StrangeMessage> messageList = new ArrayList<StrangeMessage>();
-    RelativeLayout send;
+    ImageView send;
     private Handler mTypingHandler = new Handler();
     private boolean mTyping = false;
     private static final int TYPING_TIMER_LENGTH = 600;
@@ -53,9 +54,9 @@ public class StrangerChat extends AppCompatActivity {
         status = findViewById(R.id.patner_status);
         typing_status = findViewById(R.id.typing_status);
         end_chat = findViewById(R.id.chat_end_button);
-        messageInputBox = findViewById(R.id.et);
+        messageInputBox = findViewById(R.id.message_et);
         recyclerView = findViewById(R.id.recyclerview);
-        send = findViewById(R.id.send_ret);
+        send = findViewById(R.id.sent_button_stranger);
 
         username = getIntent().getStringExtra("USERNAME");
         partner_id = "";
@@ -97,7 +98,7 @@ public class StrangerChat extends AppCompatActivity {
         messageInputBox.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int id, KeyEvent event) {
-                if (id == R.id.send || id == EditorInfo.IME_NULL) {
+                if (id == R.id.sent_button_stranger || id == EditorInfo.IME_NULL) {
                     attemptSend();
                     return true;
                 }

@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/event_bg.xml" value="0.21145833333333333" />
         <entry key="app/src/main/res/drawable/ic_attach_file_black_24dp.xml" value="0.21145833333333333" />
+        <entry key="app/src/main/res/drawable/ic_send_black_24dp.xml" value="0.21145833333333333" />
         <entry key="app/src/main/res/drawable/round_corner.xml" value="0.21145833333333333" />
         <entry key="app/src/main/res/drawable/shape_bg_incoming_bubble.xml" value="0.21145833333333333" />
         <entry key="app/src/main/res/drawable/shape_bg_outgoing_bubble.xml" value="0.21145833333333333" />
@@ -15,7 +16,7 @@
         <entry key="app/src/main/res/layout/item_action.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_log.xml" value="0.5" />
         <entry key="app/src/main/res/layout/item_message.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/stranger_chat_layout.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/stranger_chat_layout.xml" value="0.33" />
         <entry key="app/src/main/res/layout/temp.xml" value="0.1953125" />
         <entry key="app/src/main/res/layout/ui_input_field_xml.xml" value="0.18" />
       </map>

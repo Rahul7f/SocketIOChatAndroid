@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/wp_bg"
     android:layout_height="match_parent"
     tools:context=".StrangerChat">
 
@@ -15,173 +14,53 @@
         android:id="@+id/recyclerview"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
         android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/item_input_parent"
+        app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include" />
 
 
-    <RelativeLayout
-        android:id="@+id/item_input_parent"
+    <View
+        android:id="@+id/view2"
         android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:layout_gravity="bottom"
+        android:layout_height="1dp"
+        android:layout_marginBottom="16dp"
+        android:background="#EFEFEF"
+        app:layout_constraintBottom_toTopOf="@+id/message_et"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/message_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:minHeight="46dp"
+        android:background="@null"
+        android:ems="10"
+        android:hint="Start a conversation"
+        android:inputType="textMultiLine|text"
+        android:maxLines="7"
+        app:layout_constraintHeight_max="70dp"
+        android:scrollbars="vertical"
+        android:singleLine="false"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sent_button_stranger"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/sent_button_stranger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/message_et"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/item_input_card_parent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toStartOf="@+id/send_btn"
-            android:minHeight="46dp"
-            app:cardBackgroundColor="#FAFAFA"
-            app:cardCornerRadius="23dp"
-            app:cardElevation="0dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:gravity="bottom">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_toStartOf="@+id/item_attachment_icon_container"
-                    android:layout_toEndOf="@+id/item_emoji_icon_container"
-                    android:minHeight="46dp">
-
-                    <EditText
-                        android:id="@+id/et"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="10dp"
-                        android:background="@android:color/transparent"
-                        android:hint="Type a message"
-                        android:maxLines="6"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:scrollbars="vertical"
-                        android:textColor="@color/black"
-                        android:textColorHint="#757C82"
-                        android:textCursorDrawable="@drawable/uigitdev_cursor_style"
-                        android:textSize="16sp" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/item_camera_icon_container"
-                    android:layout_width="wrap_content"
-                    android:layout_height="46dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_gravity="bottom"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp">
-
-                    <ImageView
-                        android:id="@+id/item_camera_icon"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_centerVertical="true"
-                        android:background="?selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:src="@drawable/ic_photo_camera_black_24dp"
-                        app:tint="#757C82" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/item_attachment_icon_container"
-                    android:layout_width="wrap_content"
-                    android:layout_height="46dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_gravity="bottom"
-                    android:layout_toStartOf="@+id/item_camera_icon_container">
-
-                    <ImageView
-                        android:id="@+id/item_attachment_icon"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_centerVertical="true"
-                        android:background="?selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:src="@drawable/ic_attach_file_black_24dp"
-                        app:tint="#757C82" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/item_emoji_icon_container"
-                    android:layout_width="wrap_content"
-                    android:layout_height="46dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_gravity="bottom"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp">
-
-                    <ImageView
-                        android:id="@+id/item_emoji_icon"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_centerVertical="true"
-                        android:background="?selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:src="@drawable/ic_insert_emoticon_black_24dp"
-                        app:tint="#757C82" />
-
-                </RelativeLayout>
-
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/send_btn"
-            android:layout_width="46dp"
-            android:layout_height="46dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="4dp"
-            app:cardBackgroundColor="#01AF9B"
-            app:cardCornerRadius="23dp"
-            app:cardElevation="0dp">
-
-            <RelativeLayout
-                android:id="@+id/send_ret"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:focusable="true">
-
-                <ImageView
-                    android:id="@+id/send"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/ic_baseline_send_24"
-                    app:tint="#FFFEFF" />
-
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
-
-    </RelativeLayout>
+        app:layout_constraintTop_toTopOf="@+id/message_et"
+        app:srcCompat="@drawable/ic_send_black_24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
