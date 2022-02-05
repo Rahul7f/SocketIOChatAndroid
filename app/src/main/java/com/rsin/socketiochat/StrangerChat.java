@@ -1,6 +1,7 @@
 package com.rsin.socketiochat;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Color;
@@ -10,6 +11,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -35,8 +37,9 @@ public class StrangerChat extends AppCompatActivity {
     private Socket socket;
     private String username;
     String partner_id,partner_username,my_id;
-    TextView status,typing_status,end_chat;
-    String TAG = "STRANGER";
+    TextView status,typing_status;
+    ImageView end_chat;
+    String tagValue;
     RecyclerView recyclerView;
     StrangerAdapter strangerAdapter;
     private EditText messageInputBox;
@@ -45,6 +48,10 @@ public class StrangerChat extends AppCompatActivity {
     private Handler mTypingHandler = new Handler();
     private boolean mTyping = false;
     private static final int TYPING_TIMER_LENGTH = 600;
+    ConstraintLayout input_message_layout;
+    View appbar;
+    ImageView refresh_stranger;
+    TextView partner_tag;
 
 
     @Override
@@ -57,8 +64,13 @@ public class StrangerChat extends AppCompatActivity {
         messageInputBox = findViewById(R.id.message_et);
         recyclerView = findViewById(R.id.recyclerview);
         send = findViewById(R.id.sent_button_stranger);
+        input_message_layout = findViewById(R.id.input_message_layout);
+        appbar = findViewById(R.id.stranger_topbar);
+        refresh_stranger = findViewById(R.id.refresh_stranger);
+        partner_tag = findViewById(R.id.partner_tag_tt);
 
         username = getIntent().getStringExtra("USERNAME");
+        tagValue = getIntent().getStringExtra("TAGVALUE");
         partner_id = "";
         partner_username = "";
 
@@ -103,6 +115,12 @@ public class StrangerChat extends AppCompatActivity {
                     return true;
                 }
                 return false;
+            }
+        });
+        refresh_stranger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refreshActivity();
             }
         });
 
@@ -261,8 +279,9 @@ public class StrangerChat extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    refreshActivity();
                     Toast.makeText(getApplicationContext(), "partner gone", Toast.LENGTH_SHORT).show();
-                    finish();
+//                    finish();
                 }
             });
 
@@ -279,6 +298,11 @@ public class StrangerChat extends AppCompatActivity {
                 public void run() {
 //                    Toast.makeText(getApplicationContext(), "user disconnected", Toast.LENGTH_LONG).show();
                     //TODO  reload activity
+                    status.setVisibility(View.VISIBLE);
+                    status.setText("disconnect");
+                    recyclerView.setVisibility(View.GONE);
+                    appbar.setVisibility(View.GONE);
+                    input_message_layout.setVisibility(View.GONE);
 
                 }
             });
@@ -313,6 +337,13 @@ public class StrangerChat extends AppCompatActivity {
                 public void run() {
                     status.setText("connection error");
                     status.setTextColor(Color.parseColor("#e21400"));
+
+                    status.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.GONE);
+                    appbar.setVisibility(View.GONE);
+                    input_message_layout.setVisibility(View.GONE);
+
+
                 }
             });
         }
@@ -333,6 +364,19 @@ public class StrangerChat extends AppCompatActivity {
                             partner_username = data.getString("partner_username");
                             status.setText(partner_username.trim()+" connected");
                             status.setTextColor(Color.parseColor("#3b88eb"));
+                            if (!partner_username.isEmpty() && partner_username!=null && partner_username !="null")
+                            {
+                                partner_tag.setText(data.getString("tag"));
+                                Toast mytoast = Toast.makeText(getApplicationContext(), "You are connected with:- "+partner_username+" ", Toast.LENGTH_LONG);
+                                mytoast.setGravity(Gravity.TOP,0,0);
+                                mytoast.show();
+                            }
+
+                            status.setVisibility(View.GONE);
+                            recyclerView.setVisibility(View.VISIBLE);
+                            appbar.setVisibility(View.VISIBLE);
+                            input_message_layout.setVisibility(View.VISIBLE);
+
                         } catch (JSONException e) {
                             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
@@ -342,6 +386,7 @@ public class StrangerChat extends AppCompatActivity {
                         try {
                             item.put("partner_id",socket.id());
                             item.put("partner_username",username);
+                            item.put("tag",tagValue);
                             json.put("target",data.get("partner_id"));
                             json.put("data",item);
                             socket.emit("partner",json);

@@ -7,45 +7,63 @@
     android:paddingVertical="10dp"
     android:background="@color/white">
 
-    <TextView
-        android:id="@+id/patner_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="connecting..."
-        android:textColor="@color/username0"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/typing_status"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/typing_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/patner_status"
-        app:layout_constraintTop_toBottomOf="@+id/patner_status" />
+        app:layout_constraintBottom_toBottomOf="@+id/refresh_stranger"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chat_end_button"
+        app:layout_constraintVertical_bias="0.51" />
 
-    <TextView
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/tag_music"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/refresh_stranger"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/refresh_stranger"
+        app:layout_constraintTop_toTopOf="@+id/refresh_stranger"
+        app:strokeColor="@color/blue"
+        android:backgroundTint="@color/blue"
+        app:strokeWidth="1dp">
+
+        <TextView
+            android:id="@+id/partner_tag_tt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="15dp"
+            android:textColor="@color/white"
+            android:paddingVertical="10dp"
+            android:text="Tag of partner" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <ImageView
+        android:id="@+id/refresh_stranger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_refresh_button" />
+
+    <ImageView
         android:id="@+id/chat_end_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/round_corner"
-        android:backgroundTint="@color/username0"
-        android:fontFamily="sans-serif"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="5dp"
-        android:text="End Chat"
-        android:textColor="@color/white"
-        android:textFontWeight="500"
-        app:layout_constraintBottom_toBottomOf="@+id/typing_status"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/refresh_stranger"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/refresh_stranger"
+        app:srcCompat="@drawable/ic_back_icon" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

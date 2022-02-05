@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int TYPING_TIMER_LENGTH = 600;
     private boolean mTyping = false;
     private Handler mTypingHandler = new Handler();
-    private String username;
+    private String username,tagValue;
     private RecyclerView.Adapter adapter;
     TextView total_user;
 
@@ -70,12 +70,13 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         send = findViewById(R.id.sent_button_chatroom);
         username = getIntent().getStringExtra("USERNAME")+":";
+        tagValue = getIntent().getStringExtra("TAGVALUE");
 
 
 
         try {
-//            socket = IO.socket("http://192.168.43.93:3000/");
-            socket = IO.socket("https://obscure-badlands-61875.herokuapp.com/");
+            socket = IO.socket("http://192.168.43.93:3000/");
+//            socket = IO.socket("https://obscure-badlands-61875.herokuapp.com/");
 
             status.setBackgroundColor(Color.parseColor("#e21400"));
             status.setTextColor(Color.parseColor("#FFFFFFFF"));
