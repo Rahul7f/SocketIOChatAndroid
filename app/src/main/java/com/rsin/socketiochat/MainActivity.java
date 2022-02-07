@@ -75,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         try {
-            socket = IO.socket("http://192.168.43.93:3000/");
-//            socket = IO.socket("https://obscure-badlands-61875.herokuapp.com/");
+//            socket = IO.socket("http://192.168.43.93:3000/");
+            socket = IO.socket("https://obscure-badlands-61875.herokuapp.com/");
 
             status.setBackgroundColor(Color.parseColor("#e21400"));
             status.setTextColor(Color.parseColor("#FFFFFFFF"));

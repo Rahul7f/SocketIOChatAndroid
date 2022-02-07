@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,7 +26,7 @@ import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-    private EditText editText;
+    private TextInputLayout editText;
     Button signInButton, stranger_btn;
     MaterialCardView music,tech,relationship,mental_health,looking_for_advice,other;
     TextView music_tt,tech_tt,relationship_tt,mental_health_tt,looking_for_advice_tt,other_tt;
@@ -64,7 +65,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (editText.getText().toString().isEmpty())
+                if (editText.getEditText().getText().toString().isEmpty())
                 {
                     Toast.makeText(getApplicationContext(), "enter your name", Toast.LENGTH_SHORT).show();
                 }
@@ -74,7 +75,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
                 else
                 {
-                    attemptLogin(editText.getText().toString(),tagValue);
+                    attemptLogin(editText.getEditText().getText().toString(),tagValue);
                 }
 
             }
@@ -82,7 +83,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
         stranger_btn.setOnClickListener(view -> {
-            if (editText.getText().toString().isEmpty())
+            if (editText.getEditText().getText().toString().isEmpty())
             {
                 Toast.makeText(getApplicationContext(), "enter your name", Toast.LENGTH_SHORT).show();
             }
@@ -92,7 +93,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
             else
             {
-                strangerLogin(editText.getText().toString(),tagValue);
+                strangerLogin(editText.getEditText().getText().toString(),tagValue);
             }
 
         });

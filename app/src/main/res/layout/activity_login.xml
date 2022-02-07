@@ -6,22 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username_input"
-        android:layout_width="match_parent"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+
         android:layout_marginEnd="16dp"
-        android:hint="Enter your real or fake name"
-        android:inputType="textPersonName"
-        android:maxLength="14"
-        android:maxLines="1"
-        android:singleLine="true"
+        android:hint="Enter Your Fake or Real name"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
+        app:boxStrokeColor="@color/blue"
+        app:hintTextColor="@color/blue"
+        app:boxCornerRadiusTopStart="20dp"
+        app:boxCornerRadiusBottomEnd="20dp"
         app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/sign_in_button"
@@ -48,10 +55,10 @@
         android:layout_width="0dp"
         android:layout_height="55dp"
         android:layout_marginEnd="8dp"
-        android:backgroundTint="#5CB85C"
+        android:backgroundTint="@color/blue"
         android:drawableEnd="@drawable/ic_baseline_chat_bubble_24"
         android:drawableTint="@color/white"
-        android:text="Chat with Stranger"
+        android:text="Stranger"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:visibility="visible"

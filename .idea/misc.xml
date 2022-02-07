@@ -10,7 +10,7 @@
         <entry key="app/src/main/res/drawable/round_corner.xml" value="0.21145833333333333" />
         <entry key="app/src/main/res/drawable/shape_bg_incoming_bubble.xml" value="0.21145833333333333" />
         <entry key="app/src/main/res/drawable/shape_bg_outgoing_bubble.xml" value="0.21145833333333333" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_stater.xml" value="0.175" />
         <entry key="app/src/main/res/layout/activity_stranger_chat.xml" value="0.22" />

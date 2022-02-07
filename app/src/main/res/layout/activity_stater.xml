@@ -6,11 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".StaterActivity">
 
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:src="@drawable/bg_start2"
-        android:scaleType="centerCrop"
+    <com.flaviofaria.kenburnsview.KenBurnsView
+        android:id="@+id/image_starter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
