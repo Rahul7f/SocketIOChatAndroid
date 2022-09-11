@@ -3,7 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/rahul/AndroidStudioProjects/SocketIOChatAndroid/app/src/main/res/drawable/ic_back_icon.xml" value="0.182" />
+        <entry key="..\:/Users/rahul/AndroidStudioProjects/SocketIOChatAndroid/app/src/main/res/drawable/ic_group_364.xml" value="0.122" />
+        <entry key="..\:/Users/rahul/AndroidStudioProjects/SocketIOChatAndroid/app/src/main/res/drawable/ic_refresh_button.xml" value="0.182" />
+        <entry key="..\:/Users/rahul/AndroidStudioProjects/SocketIOChatAndroid/app/src/main/res/drawable/round_corner.xml" value="0.122" />
+        <entry key="..\:/Users/rahul/AndroidStudioProjects/SocketIOChatAndroid/app/src/main/res/drawable/round_corner_left_bubble.xml" value="0.122" />
+        <entry key="..\:/Users/rahul/AndroidStudioProjects/SocketIOChatAndroid/app/src/main/res/drawable/round_corner_right_bubble.xml" value="0.122" />
+        <entry key="..\:/Users/rahul/AndroidStudioProjects/SocketIOChatAndroid/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/rahul/AndroidStudioProjects/SocketIOChatAndroid/app/src/main/res/layout/activity_stater.xml" value="0.14130434782608695" />
+        <entry key="..\:/Users/rahul/AndroidStudioProjects/SocketIOChatAndroid/app/src/main/res/layout/activity_stranger_chat.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/rahul/AndroidStudioProjects/SocketIOChatAndroid/app/src/main/res/layout/app_bar.xml" value="0.5" />
+        <entry key="..\:/Users/rahul/AndroidStudioProjects/SocketIOChatAndroid/app/src/main/res/layout/stranger_chat_layout.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/rahul/AndroidStudioProjects/SocketIOChatAndroid/app/src/main/res/layout/stranger_chat_layout2.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/rahul/AndroidStudioProjects/SocketIOChatAndroid/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.122" />
         <entry key="..\:/Users/rahul/AndroidStudioProjects/SocketIOChatAndroid/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.122" />
         <entry key="app/src/main/res/drawable-v24/button_one_corner_bg.xml" value="0.21145833333333333" />

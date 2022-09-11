@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -57,11 +58,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onClick(View view) {
                 if (editText.getEditText().getText().toString().isEmpty())
                 {
-                    Toast.makeText(getApplicationContext(), "enter your name", Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar.make(view, "Enter your name", Snackbar.LENGTH_LONG);
+                    snackbar.setBackgroundTint(Color.parseColor("#e21400"));
+                    snackbar.show();
                 }
                 else if(tagValue.equals("no"))
                 {
-                    Toast.makeText(getApplicationContext(), "Select Tag", Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar.make(view, "Select Tag", Snackbar.LENGTH_LONG);
+                    snackbar.setBackgroundTint(Color.parseColor("#e21400"));
+                    snackbar.show();
                 }
                 else
                 {
@@ -75,11 +80,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         stranger_btn.setOnClickListener(view -> {
             if (editText.getEditText().getText().toString().isEmpty())
             {
-                Toast.makeText(getApplicationContext(), "enter your name", Toast.LENGTH_SHORT).show();
+                Snackbar snackbar = Snackbar.make(view, "Enter your name", Snackbar.LENGTH_LONG);
+                snackbar.setBackgroundTint(Color.parseColor("#e21400"));
+                snackbar.show();
             }
             else if(tagValue.equals("no"))
             {
-                Toast.makeText(getApplicationContext(), "Select Tag", Toast.LENGTH_SHORT).show();
+                Snackbar snackbar = Snackbar.make(view, "Select Tag", Snackbar.LENGTH_LONG);
+                snackbar.setBackgroundTint(Color.parseColor("#e21400"));
+                snackbar.show();
             }
             else
             {

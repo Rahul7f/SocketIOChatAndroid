@@ -23,7 +23,7 @@ public class StrangerAdapter extends RecyclerView.Adapter<StrangerAdapter.ViewHo
     @NonNull
     @Override
     public StrangerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.stranger_chat_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.stranger_chat_layout2, parent, false);
         return new ViewHolder(view);
     }
     @Override
@@ -32,12 +32,12 @@ public class StrangerAdapter extends RecyclerView.Adapter<StrangerAdapter.ViewHo
         {
             holder.incoming.setVisibility(View.GONE);
             holder.my_message.setText(messageList.get(position).getMessage());
-            holder.my_name.setText(messageList.get(position).getUsername());
+//            holder.my_name.setText(messageList.get(position).getUsername());
         }
         else {
             holder.outgoing.setVisibility(View.GONE);
             holder.partner_msg.setText(messageList.get(position).getMessage());
-            holder.partner_name.setText(messageList.get(position).getUsername());
+//            holder.partner_name.setText(messageList.get(position).getUsername());
         }
     }
 
@@ -48,14 +48,14 @@ public class StrangerAdapter extends RecyclerView.Adapter<StrangerAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ConstraintLayout incoming, outgoing;
-        TextView partner_msg,partner_name,my_name,my_message;
+        TextView partner_msg,my_message;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             incoming = itemView.findViewById(R.id.incoming_msg_layout);
             outgoing = itemView.findViewById(R.id.outgoing_msg_layout);
             partner_msg = itemView.findViewById(R.id.partner_msg);
-            partner_name = itemView.findViewById(R.id.partner_username);
-            my_name = itemView.findViewById(R.id.my_username);
+//            partner_name = itemView.findViewById(R.id.partner_username);
+//            my_name = itemView.findViewById(R.id.my_username);
             my_message = itemView.findViewById(R.id.my_message);
         }
     }

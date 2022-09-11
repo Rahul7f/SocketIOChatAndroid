@@ -17,8 +17,11 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.card.MaterialCardView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,7 +39,7 @@ public class StrangerChat extends AppCompatActivity {
     private String username;
     String partner_id,partner_username,my_id;
     TextView status,typing_status;
-    ImageView end_chat;
+//    ImageView end_chat;
     String tagValue;
     RecyclerView recyclerView;
     StrangerAdapter strangerAdapter;
@@ -49,7 +52,9 @@ public class StrangerChat extends AppCompatActivity {
     ConstraintLayout input_message_layout;
     View appbar;
     ImageView refresh_stranger;
-    TextView partner_tag;
+    TextView partner_tag,partner_name;
+    LinearLayout connection_color_status;
+    TextView connection_status;
 
 
     @Override
@@ -58,7 +63,10 @@ public class StrangerChat extends AppCompatActivity {
         setContentView(R.layout.activity_stranger_chat);
         status = findViewById(R.id.patner_status);
         typing_status = findViewById(R.id.typing_status);
-        end_chat = findViewById(R.id.chat_end_button);
+        partner_name = findViewById(R.id.partner_name);
+        connection_status = findViewById(R.id.connection_status);
+        connection_color_status = findViewById(R.id.connection_color_status);
+//        end_chat = findViewById(R.id.chat_end_button);
         messageInputBox = findViewById(R.id.message_et);
         recyclerView = findViewById(R.id.recyclerview);
         send = findViewById(R.id.sent_button_stranger);
@@ -119,13 +127,6 @@ public class StrangerChat extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 refreshActivity();
-            }
-        });
-
-        end_chat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
             }
         });
 
@@ -278,7 +279,7 @@ public class StrangerChat extends AppCompatActivity {
                 @Override
                 public void run() {
                     refreshActivity();
-                    Toast.makeText(getApplicationContext(), "partner gone", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "User gone", Toast.LENGTH_SHORT).show();
 //                    finish();
                 }
             });
@@ -298,6 +299,8 @@ public class StrangerChat extends AppCompatActivity {
                     //TODO  reload activity
                     status.setVisibility(View.VISIBLE);
                     status.setText("disconnect");
+                    connection_color_status.setBackgroundColor(Color.parseColor("#e21400"));
+                    connection_status.setText("Disconnect");
                     recyclerView.setVisibility(View.GONE);
                     appbar.setVisibility(View.GONE);
                     input_message_layout.setVisibility(View.GONE);
@@ -335,6 +338,8 @@ public class StrangerChat extends AppCompatActivity {
                 public void run() {
                     status.setText("connection error");
                     status.setTextColor(Color.parseColor("#e21400"));
+                    connection_color_status.setBackgroundColor(Color.parseColor("#e21400"));
+                    connection_status.setText("connection error");
 
                     status.setVisibility(View.VISIBLE);
                     recyclerView.setVisibility(View.GONE);
@@ -365,9 +370,9 @@ public class StrangerChat extends AppCompatActivity {
                             if (!partner_username.isEmpty() && partner_username!=null && partner_username !="null")
                             {
                                 partner_tag.setText(data.getString("tag"));
-                                Toast mytoast = Toast.makeText(getApplicationContext(), "You are connected with:- "+partner_username+" ", Toast.LENGTH_LONG);
-                                mytoast.setGravity(Gravity.TOP,0,0);
-                                mytoast.show();
+                                partner_name.setText(partner_username);
+                                connection_color_status.setBackgroundColor(Color.parseColor("#58dc00"));
+                                connection_status.setText("Connected");
                             }
 
                             status.setVisibility(View.GONE);
@@ -427,11 +432,11 @@ public class StrangerChat extends AppCompatActivity {
 
     private void attemptSend() {
         if (null == username){
-            Toast.makeText(getApplicationContext(), "user name is null", Toast.LENGTH_SHORT).show();
             return;
         }
         if (!socket.connected()){
-            Toast.makeText(getApplicationContext(), "Socket not not connected\nwe are trying to connect...", Toast.LENGTH_SHORT).show();
+            connection_color_status.setBackgroundColor(Color.parseColor("#e21400"));
+            connection_status.setText("we are trying to connect...");
             return;
         }
 //        mTyping = false;

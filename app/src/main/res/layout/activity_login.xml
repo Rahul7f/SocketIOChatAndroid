@@ -37,7 +37,6 @@
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:backgroundTint="@color/blue"
-        android:drawableRight="@drawable/ic_baseline_group_24"
         android:drawableTint="@color/white"
         android:text="Chat Rooms"
         android:textAllCaps="false"
@@ -56,9 +55,8 @@
         android:layout_height="55dp"
         android:layout_marginEnd="8dp"
         android:backgroundTint="@color/blue"
-        android:drawableEnd="@drawable/ic_baseline_chat_bubble_24"
         android:drawableTint="@color/white"
-        android:text="Stranger"
+        android:text="Chat with Stranger"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:visibility="visible"
@@ -78,7 +76,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_back_icon"
-        app:tint="#BDBDBD" />
+        app:tint="@color/black" />
 
     <TextView
         android:id="@+id/textView2"

@@ -9,7 +9,7 @@
     <include
         android:id="@+id/stranger_topbar"
         layout="@layout/app_bar"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
