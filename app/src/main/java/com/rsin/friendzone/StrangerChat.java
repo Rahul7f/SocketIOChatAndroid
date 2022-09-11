@@ -279,7 +279,7 @@ public class StrangerChat extends AppCompatActivity {
                 @Override
                 public void run() {
                     refreshActivity();
-                    Toast.makeText(getApplicationContext(), "User gone", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getApplicationContext(), "User gone", Toast.LENGTH_SHORT).show();
 //                    finish();
                 }
             });
