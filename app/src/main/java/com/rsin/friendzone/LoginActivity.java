@@ -1,4 +1,4 @@
-package com.rsin.socketiochat;
+package com.rsin.friendzone;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,23 +7,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.TextInputLayout;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import io.socket.client.Socket;
-import io.socket.emitter.Emitter;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private TextInputLayout editText;

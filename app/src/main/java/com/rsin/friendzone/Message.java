@@ -1,4 +1,4 @@
-package com.rsin.socketiochat;
+package com.rsin.friendzone;
 
 public class Message {
     public static final int TYPE_MESSAGE = 0;

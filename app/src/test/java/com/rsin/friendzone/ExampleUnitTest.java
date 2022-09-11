@@ -1,4 +1,4 @@
-package com.rsin.socketiochat;
+package com.rsin.friendzone;
 
 import org.junit.Test;
 

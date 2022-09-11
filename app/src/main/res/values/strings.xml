@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SocketIOChat</string>
+    <string name="app_name">Friendzone</string>
 
     <string name="action_leave">Leave</string>
     <string name="action_send">Send</string>

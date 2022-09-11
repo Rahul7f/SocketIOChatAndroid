@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/rahul/AndroidStudioProjects/SocketIOChatAndroid/app/src/main/res/layout/activity_stater.xml" value="0.14130434782608695" />
+        <entry key="..\:/Users/rahul/AndroidStudioProjects/SocketIOChatAndroid/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.122" />
+        <entry key="..\:/Users/rahul/AndroidStudioProjects/SocketIOChatAndroid/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.122" />
         <entry key="app/src/main/res/drawable-v24/button_one_corner_bg.xml" value="0.21145833333333333" />
         <entry key="app/src/main/res/drawable/event_bg.xml" value="0.21145833333333333" />
         <entry key="app/src/main/res/drawable/ic_attach_file_black_24dp.xml" value="0.21145833333333333" />

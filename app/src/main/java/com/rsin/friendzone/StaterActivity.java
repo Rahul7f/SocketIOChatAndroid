@@ -1,16 +1,11 @@
-package com.rsin.socketiochat;
+package com.rsin.friendzone;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.BounceInterpolator;
-import android.view.animation.CycleInterpolator;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.Interpolator;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.PathInterpolator;
 import android.widget.Button;
 
 import com.bumptech.glide.Glide;
@@ -28,8 +23,8 @@ public class StaterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_stater);
         kbv = findViewById(R.id.image_starter);
 
-
-        Glide.with(getApplicationContext()).load("https://drive.google.com/uc?id=1ubrCL-yWU4hDSeLrsA3nS-8SEOUUhw8K").placeholder(R.drawable.mountains).into(kbv);
+        kbv.setImageDrawable(getDrawable(R.drawable.bg2));
+//        Glide.with(getApplicationContext()).load("https://drive.google.com/uc?id=1ubrCL-yWU4hDSeLrsA3nS-8SEOUUhw8K").placeholder(R.drawable.mountains).into(kbv);
 
         kbv.setTransitionListener(new KenBurnsView.TransitionListener() {
             @Override
@@ -49,9 +44,24 @@ public class StaterActivity extends AppCompatActivity {
 
         button = findViewById(R.id.start_talking_button);
         button.setOnClickListener(v -> {
+            SharedPreferences.Editor editor = getSharedPreferences("PREFS_STATER", MODE_PRIVATE).edit();
+            editor.putBoolean("VALUE",true);
+            editor.apply();
             startActivity(new Intent(getApplicationContext(),LoginActivity.class));
             finish();
         });
 
+    }
+
+    @Override
+    protected void onStart() {
+        SharedPreferences prefs = getSharedPreferences("PREFS_STATER", MODE_PRIVATE);
+        boolean value = prefs.getBoolean("VALUE",false);//"No name defined" is the default value.
+        if(value)
+        {
+            startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+            finish();
+        }
+        super.onStart();
     }
 }
