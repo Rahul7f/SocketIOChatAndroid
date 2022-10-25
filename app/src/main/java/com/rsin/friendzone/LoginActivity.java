@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     int currentHighLiteButton;
     int currentHighLiteText;
     String tagValue = "no";
+    ImageView back_button;
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -33,6 +35,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         editText =  findViewById(R.id.username_input);
+        back_button =  findViewById(R.id.back_button);
         signInButton =  findViewById(R.id.sign_in_button);
         stranger_btn =  findViewById(R.id.stranger_option);
 
@@ -52,7 +55,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         currentHighLiteButton = R.id.tag_other;
         currentHighLiteText = R.id.other_tt;
-
+        back_button.setOnClickListener(view -> {
+            finish();
+        });
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
